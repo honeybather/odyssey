@@ -2,7 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify, url_for ) 
 from model import connect_to_db, db 
-#from model import db, User, Category, Activity, Event, BucketList, ExpertAdvice
+from model import User, Sport, Athlete, QuizAnswer
 from jinja2 import StrictUndefined 
 import crud
 
@@ -17,13 +17,6 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """Say something like Start the quizz"""
     return render_template('homepage.html')
-
-"""
-# i think i want it to be one page
-# click, screen changes, click, screen changes, you can go back if made a mistake
-# and when you get your final answer, it would say, want to share w a friend?
-# or take me back home (start quiz) 
-"""
 
 if __name__ == "__main__":
     connect_to_db(app) # Connect to the database using the app instance

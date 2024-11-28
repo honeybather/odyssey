@@ -28,9 +28,19 @@ class Sport(db.Model):
     sport_name = db.Column(db.String, unique=True)
     sport_description = db.Column(db.String)
 
-    athletes = db.relationship("Athlete", back_populates="sport", lazy=True) 
+    intensity_level = db.Column(db.String, nullable=False) # high, moderate, low
+    environment = db.Column(db.String, nullable=False) # gym, mat, court, field, cage, ring, pool
+    sport_type = db.Column(db.String, nullable=False) # team, solo
+    primary_focus = db.Column(db.String, nullable=False) # strength, endurance, flexibility, skill, agility
+
+    is_combat = db.Column(db.Boolean, nullable=False)  # true, false
+    is_strategic = db.Column(db.Boolean, nullable=False) 
+    is_competitive = db.Column(db.Boolean, nullable=False)  
+    is_outdoor = db.Column(db.Boolean, nullable=False)  
+
+    athletes = db.relationship("Athlete", back_populates="sport", lazy=True)
     quiz_answers = db.relationship("QuizAnswer", back_populates="sport", lazy=True)
-    
+
     def __repr__(self):
         return f"<Sport sport_id={self.sport_id} sport_name={self.sport_name}>"
 
@@ -46,6 +56,7 @@ class Athlete(db.Model):
     diet = db.Column(db.String, nullable=True) 
 
     sport_id = db.Column(db.Integer, db.ForeignKey("sports.sport_id"), nullable=False)
+
     sport = db.relationship("Sport", back_populates="athletes", lazy=True)
 
     def __repr__(self):
@@ -59,7 +70,9 @@ class QuizAnswer(db.Model):
     answer_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     sport_id = db.Column(db.Integer, db.ForeignKey("sports.sport_id"), nullable=False)
-    quiz_answers = db.Column(db.JSON, nullable=False)
+
+    quiz_responses = db.Column(db.JSON, nullable=False)
+    match_percentage = db.Column(db.Float, nullable=False)
 
     user = db.relationship("User", back_populates="quiz_answers", lazy=True)
     sport = db.relationship("Sport", back_populates="quiz_answers", lazy=True)
@@ -70,7 +83,7 @@ class QuizAnswer(db.Model):
 def connect_to_db(app):
     """Connect the database to Flask app."""
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///activities"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///odyssey"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
