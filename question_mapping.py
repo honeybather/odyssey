@@ -34,37 +34,39 @@ question_mapping = {
         "yes": ["MMA","Basketball", "Soccer", "Football", "Volleyball", "Jiu-Jitsu", "Rock Climbing"],
         "no": [ "Muay Thai", "Boxing", "Wrestling", "Running", "Biking", "Swimming", "Yoga", "Powerlifting", "CrossFit", "Gymnastics", "Triathlon"]
     },
-    "What are my fitness goals?": {
+    "What are your fitness goals?": {
         "strength": ["Powerlifting", "CrossFit", "Gymnastics"],
         "endurance": ["Running", "Biking", "Swimming", "Triathlon"],
         "flexibility": ["Yoga"],
         "skill-based": ["MMA", "Muay Thai", "Boxing", "Wrestling", "Jiu-Jitsu"],
         "agility": ["Basketball", "Soccer", "Football", "Volleyball", "Rock Climbing"]
     },
-    "Do I prefer individual or team sports?": {
+    "Do you prefer individual or team sports?": {
         "individual": ["Running", "Biking", "Swimming", "Rock Climbing", "Triathlon", "Powerlifting", "CrossFit", "Gymnastics"],
         "team": ["Basketball", "Soccer", "Volleyball", "Baseball", "Football"]
     },
-    "Do I enjoy competition or just personal challenge?": {
+    "Do you enjoy competition or just personal challenge?": {
         "competition": ["Basketball", "Soccer", "Football", "Triathlon"],
         "personal": ["Powerlifting", "CrossFit", "Rock Climbing", "Gymnastics"]
     },
-    "What kind of environment do I prefer?": {
+    "What kind of environment do you prefer?": {
         "gym": ["Powerlifting", "CrossFit", "Gymnastics"],
         "outdoors": ["Running", "Biking", "Swimming", "Rock Climbing", "Triathlon"],
         "field": ["Football", "Baseball", "Soccer"],
         "court": ["Tennis", "Volleyball", "Basketball"],
         "ring": ["MMA", "Muay Thai", "Boxing", "Wrestling", "Jiu-Jitsu"]
     },
-    "What level of intensity am I looking for?": {
+    "What level of intensity am you looking for?": {
         "high-intensity": ["MMA", "Muay Thai", "Boxing", "Wrestling", "Football", "CrossFit", "Triathlon"],
         "moderate-intensity": ["Basketball", "Soccer", "Tennis", "Volleyball"],
         "low-intensity": ["Yoga", "Swimming", "Biking", "Running"]
     },
-    "Do I have any specific preferences for technique or strategy?": {
+    "Do you have any specific preferences for technique or strategy?": {
         "technique": ["MMA", "Muay Thai", "Boxing", "Wrestling", "Jiu-Jitsu"],
         "strategy": ["Basketball", "Football", "Soccer", ]
     }
 }
 
-# 11 questions 
+# 11 questions  + name & email = 13 questions 
+# Before we get started, what’s your name?
+# What’s your email, <name>? 

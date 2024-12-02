@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Quiz Results</title>
-</head>
-<body>
-    <h1>Your Top Recommended Sports</h1>
-    <ul>
-        {% for sport in sports %}
-            <li>{{ sport }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Quiz Results{% endblock %}
+
+{% block body %}
+<h1>Your Sports Matches Are In! 🎉</h1>
+<p>Based on your answers, we’ve found the top 3 sports that align with your personality, lifestyle, and fitness goals.</p>
+<ul>
+    {% for sport in sports %}
+        <li>{{ sport }}</li>
+    {% endfor %}
+</ul>
+<a href="/">Go back to Homepage</a>
+{% endblock %}
+

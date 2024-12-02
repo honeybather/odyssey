@@ -4,19 +4,19 @@ from model import User, Sport, Athlete, QuizAnswer
 from model import db, connect_to_db
 from flask import render_template
 
-def create_user(username, email, password):
+def create_user(name, email):
     """Create and return a new user."""
 
-    user = User(username=username, email=email, password=password)
+    user = User(name=name, email=email)
 
     db.session.add(user)
     db.session.commit()
 
     return user
 
-def get_user_by_username(username):
-    """Return a user by username."""
-    return User.query.filter(User.username == username).first()
+def get_user_by_name(name):
+    """Return a user by name."""
+    return User.query.filter(User.name == name).first()
 
 def get_user_by_email(email):
     """Return a user by email."""

@@ -2,8 +2,59 @@
 {% block title %}Quiz{% endblock %}
 
 {% block body %}
+<h1>Sports Quiz</h1>
+<form method="POST" action="{{ url_for('quiz_results') }}">
+    <div>
+        <label for="name">Before we get started, what’s your name?</label><br>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="email">What’s your email, {% if request.form.get('name') %}{{ request.form['name'] }}{% else %}please enter your name{% endif %}? </label><br>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <hr>
+    <h2>Quiz Questions</h2>
+    {% for question, options in question_mapping.items() %}
+        <div>
+            <label>{{ question }}</label><br>
+            {% if 'yes' in options %}
+                <input type="radio" name="{{ question }}" value="yes"> Yes<br>
+                <input type="radio" name="{{ question }}" value="no"> No<br>
+            {% endif %}
+            {% if 'strength' in options %}
+                <input type="radio" name="{{ question }}" value="strength"> Strength<br>
+                <input type="radio" name="{{ question }}" value="endurance"> Endurance<br>
+                <input type="radio" name="{{ question }}" value="flexibility"> Flexibility<br>
+                <input type="radio" name="{{ question }}" value="skill-based"> Skill-based<br>
+                <input type="radio" name="{{ question }}" value="agility"> Agility<br>
+            {% endif %}
+            {% if 'individual' in options %}
+                <input type="radio" name="{{ question }}" value="individual"> Individual<br>
+                <input type="radio" name="{{ question }}" value="team"> Team<br>
+            {% endif %}
+            {% if 'competition' in options %}
+                <input type="radio" name="{{ question }}" value="competition"> Competition<br>
+                <input type="radio" name="{{ question }}" value="personal"> Personal<br>
+            {% endif %}
+            {% if 'gym' in options %}
+                <input type="radio" name="{{ question }}" value="gym"> Gym<br>
+                <input type="radio" name="{{ question }}" value="outdoors"> Outdoors<br>
+                <input type="radio" name="{{ question }}" value="field"> Field<br>
+                <input type="radio" name="{{ question }}" value="court"> Court<br>
+                <input type="radio" name="{{ question }}" value="ring"> Ring<br>
+            {% endif %}
+            {% if 'high-intensity' in options %}
+                <input type="radio" name="{{ question }}" value="high-intensity"> High-Intensity<br>
+                <input type="radio" name="{{ question }}" value="moderate-intensity"> Moderate-Intensity<br>
+                <input type="radio" name="{{ question }}" value="low-intensity"> Low-Intensity<br>
+            {% endif %}
+            {% if 'technique' in options %}
+            <input type="radio" name="{{ question }}" value="technique"> Technique<br>
+            <input type="radio" name="{{ question }}" value="strategy"> Strategy<br>
+            {% endif %}
 
-<h1>Odyssey Quiz</h1>
-
-
+        </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
 {% endblock %}

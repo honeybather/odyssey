@@ -21,38 +21,38 @@ def homepage():
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
     """Display the quiz questions or process the answers."""
-    if request.method == 'POST':
-        user_answers = request.form
-        sport_scores = {}
 
-        for sport in ["MMA", "Muay Thai", "Boxing", "Wrestling", "Jiu-Jitsu", 
-                      "Basketball", "Soccer", "Volleyball", "Baseball", 
-                      "Football", "Running", "Biking", "Swimming", 
-                      "Triathlon", "Tennis", "Rock Climbing", "Yoga", 
-                      "CrossFit", "Powerlifting", "Gymnastics"]:
-            sport_scores[sport] = 0
+    if request.method == 'POST':
+        print(request.form) 
+        user_name = request.form.get('name')
+        user_email = request.form.get('email')
+        user_answers = request.form
+
+        sport_scores = {sport: 0 for sport in question_mapping.values()}
 
         for question, answer in user_answers.items():
             if question in question_mapping:
                 if answer.lower() == "yes":
                     for sport in question_mapping[question]["yes"]:
                         sport_scores[sport] += 1
-                else:
-                    for sport in question_mapping[question]["no"]:
-                        sport_scores[sport] -= 1
+                elif answer in question_mapping[question]:
+                    for sport in question_mapping[question][answer]:
+                        sport_scores[sport] += 1
 
         sorted_sports = sorted(sport_scores.items(), key=lambda x: x[1], reverse=True)
-
         top_sports = [sport for sport, score in sorted_sports[:3]]
 
-        return render_template('quiz_results.html', sports=top_sports)
+        return render_template('quiz_results.html', sports=top_sports, name=user_name, email=user_email)
 
-    return render_template('quiz.html')
+    return render_template('quiz.html', question_mapping=question_mapping)
 
-@app.route('/quiz-results')
+@app.route('/quiz-results', methods=['GET'])
 def quiz_results():
     """Display the quiz results."""
-    return render_template('quiz_results.html')
+    sports = request.args.getlist('sports').split(',')   
+    name = request.args.get('name')
+    email = request.args.get('email')
+    return render_template('quiz_results.html', sports=sports, name=name, email=email)
 
 @app.route('/sports-page')
 def sports_page():
