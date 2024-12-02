@@ -19,5 +19,7 @@ Take a quick look at Odyssey in action: [Watch the Demo on YouTube (soon)]
 ---
 
 ✨ Start your fitness journey today! ✨
+
+
 [![Exciting GIF](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGZiNTE5dXFhNnhmaDZ2ZTJrbTYyeGl2aHp4d3F0aXNkajRmYnA3byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/IdZmGiHplBUUS2FrOv/giphy.gif)](https://www.linkedin.com/in/ritagalkov/)
 
