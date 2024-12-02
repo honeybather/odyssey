@@ -62,6 +62,20 @@ class Athlete(db.Model):
     def __repr__(self):
         return f"<Athlete athlete_id={self.athlete_id} athlete_name={self.athlete_name}>"
 
+class QuizQuestion(db.Model):
+    """Quiz questions for sports selection."""
+
+    __tablename__ = "quiz_questions"
+
+    question_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    question_text = db.Column(db.String, nullable=False)
+    answer_type = db.Column(db.String, nullable=False)  # yes/no, multiple choice
+    possible_answers = db.Column(db.JSON, nullable=False)  # Store possible answers as JSON
+
+    answers = db.relationship("QuizAnswer", back_populates="quiz_question", lazy=True)
+    def __repr__(self):
+        return f"<QuizQuestion question_id={self.question_id} question_text={self.question_text}>"
+
 class QuizAnswer(db.Model):
     """Quiz answers for a user."""
 
@@ -70,13 +84,15 @@ class QuizAnswer(db.Model):
     answer_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     sport_id = db.Column(db.Integer, db.ForeignKey("sports.sport_id"), nullable=False)
+    question_id = db.Column(db.Integer, db.ForeignKey("quiz_questions.question_id"), nullable=False)
 
-    quiz_responses = db.Column(db.JSON, nullable=False)
+    selected_answer = db.Column(db.String, nullable=False) 
     match_percentage = db.Column(db.Float, nullable=False)
 
     user = db.relationship("User", back_populates="quiz_answers", lazy=True)
     sport = db.relationship("Sport", back_populates="quiz_answers", lazy=True)
-
+    quiz_question = db.relationship("QuizQuestion", back_populates="answers", lazy=True)
+    
     def __repr__(self):
         return f"<QuizAnswer quiz_answer_id={self.quiz_answer_id} user_id={self.user_id}>"
 

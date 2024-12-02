@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Results</title>
+</head>
+<body>
+    <h1>Your Top Recommended Sports</h1>
+    <ul>
+        {% for sport in sports %}
+            <li>{{ sport }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
