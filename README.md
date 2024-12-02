@@ -1,4 +1,4 @@
-# Odyssey 🎱🛼 
+# Odyssey 🎱 
 
 ## Overview  
 **Odyssey** is a fun and interactive web app designed to help you discover your next favorite sport. Whether you're looking to get fit, try something new, or explore your adventurous side, Odyssey has the perfect sport tailored just for you! 💪  
