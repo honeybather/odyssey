@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Odyssey Home{% endblock %}
+
+{% block body %}
+<div class="main-content">
+    <h1>Welcome to Odyssey</h1>
+    <p>Discover your next favorite sport</p>
+    <p>Are you ready to embark on your journey to fitness and fun?</p>
+    <p>Take our free quiz to find the perfect sport tailored to your lifestyle, goals, and preferences.</p>
+
+    <!-- From Uiverse.io by Ashon-G --> 
+    <button class="uiverse">
+    <div class="wrapper">
+        <form id="quiz-form" action="/quiz" method="POST">
+            <span>START</span>
+            <div class="circle circle-12"></div>
+            <div class="circle circle-11"></div>
+            <div class="circle circle-10"></div>
+            <div class="circle circle-9"></div>
+            <div class="circle circle-8"></div>
+        <div class="circle circle-7"></div>
+        <div class="circle circle-6"></div>
+        <div class="circle circle-5"></div>
+        <div class="circle circle-4"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-1"></div>
+    </div>
+    </button>
+
+
+</div>
+
+{% endblock %}

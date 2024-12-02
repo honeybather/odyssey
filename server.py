@@ -18,9 +18,35 @@ def homepage():
     """Say something like Start the quizz"""
     return render_template('homepage.html')
 
-@app.route('/quiz')
+@app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
-    """Display the quiz questions."""
+    """Display the quiz questions or process the answers."""
+    if request.method == 'POST':
+        user_answers = request.form
+        sport_scores = {}
+
+        for sport in ["MMA", "Muay Thai", "Boxing", "Wrestling", "Jiu-Jitsu", 
+                      "Basketball", "Soccer", "Volleyball", "Baseball", 
+                      "Football", "Running", "Biking", "Swimming", 
+                      "Triathlon", "Tennis", "Rock Climbing", "Yoga", 
+                      "CrossFit", "Powerlifting", "Gymnastics"]:
+            sport_scores[sport] = 0
+
+        for question, answer in user_answers.items():
+            if question in question_mapping:
+                if answer.lower() == "yes":
+                    for sport in question_mapping[question]["yes"]:
+                        sport_scores[sport] += 1
+                else:
+                    for sport in question_mapping[question]["no"]:
+                        sport_scores[sport] -= 1
+
+        sorted_sports = sorted(sport_scores.items(), key=lambda x: x[1], reverse=True)
+
+        top_sports = [sport for sport, score in sorted_sports[:3]]
+
+        return render_template('quiz_results.html', sports=top_sports)
+
     return render_template('quiz.html')
 
 @app.route('/quiz-results')
@@ -28,31 +54,20 @@ def quiz_results():
     """Display the quiz results."""
     return render_template('quiz_results.html')
 
-@app.route('/submit-quiz', methods=['POST'])
-def submit_quiz():
-   
-   user_answers = request.form
-   sport_scores = {}
+@app.route('/sports-page')
+def sports_page():
+    """Display the sports page."""
+    return render_template('sports_page.html')
 
-   for sport in ["MMA", "Muay_Thai", "Boxing", "Wrestling", "Jiu_Jitsu", "Basketball", "Soccer", "Volleyball", "Baseball", "Football", "Running", "Biking", "Swimming", "Triathlon", "Tennis", "Rock_Climbing", "Yoga", "Crossfit", "Powerlifting", "Gymnastics"]:
-      sport_scores[sport] = 0
+@app.route('/athletes-page')
+def athletes_page():
+    """Display the athletes page."""
+    return render_template('athletes_page.html')
 
-    for question, answer, in user_answers.items():
-        if question in question_mapping:
-            if answer.lower() == "yes":
-                for sport in question_mapping[question]["yes"]:
-                    sport_scores[sport] += 1
-            else:
-                for sport in question_mapping[question]["no"]:
-                    sport_scores[sport] -= 1
-    
-    # Calculate the total score for each sport
-    sorted_sports = sorted(sport_scores.items(), key=lambda x: x[1], reverse=True)
-
-    # Get the top 3 sports
-    top_sports = [sport for sport, score in sorted_sports[:3]]
-
-    return render_template('quiz_results.html', sports=sorted_sports)
+@app.route('/calorie-calculator')
+def calorie_calculator():
+    """Display the calorie calculator page."""
+    return render_template('calorie_calculator.html')
 
 if __name__ == "__main__":
     connect_to_db(app) 

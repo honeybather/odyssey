@@ -59,6 +59,7 @@ def create_quiz_answer(user_id, sport_id, quiz_responses, match_percentage):
 
 
 
+
 if __name__ == "__main__":
     from server import app
     connect_to_db(app)
