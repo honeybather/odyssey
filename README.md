@@ -4,7 +4,7 @@ fun and interactive web app designed to help you discover your next favorite spo
 
 ## Features  
 - **Personalized Sport Recommendations 🎯**: Take a quick quiz, and we'll match you with the sports that best suit your goals 
-- **Diet Tips 🥗**: Get tailored nutrition advice to fuel your journey.  
+- **Diet Tips 🍌**: Get tailored nutrition advice to fuel your journey.  
 - **Inspiration Hub 🌈**: Learn about exciting sports you might not have considered before.  
 
 ## Technologies Used  
