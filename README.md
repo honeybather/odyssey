@@ -15,7 +15,3 @@ Take a quick look at Odyssey in action: [Watch the Demo on YouTube (soon)]
 - **Backend 🔧**: Flask, SQLAlchemy  
 - **Frontend 🎨**: HTML, CSS, JavaScript  
 - **Database 🗄️**: PostgreSQL  
-
----
-
-✨ Start your fitness journey today! ✨
