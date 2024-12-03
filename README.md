@@ -12,4 +12,6 @@ fun and interactive web app designed to help you discover your next favorite spo
 - **Frontend 🎨**: HTML, CSS, JavaScript  
 - **Database 🗄️**: PostgreSQL  
 
-https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDVhdHo2OTE3OGM0ZTk5cG8xYzliY2FieXg0ZGc3cjhvcjVkOXBxZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/rufA4eAG74WgYIALHb/giphy.gif
+<a href="https://www.linkedin.com/in/ritagalkov/" target="_blank">
+  <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDVhdHo2OTE3OGM0ZTk5cG8xYzliY2FieXg0ZGc3cjhvcjVkOXBxZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/rufA4eAG74WgYIALHb/giphy.gif" alt="Exciting GIF" width="200"/>
+</a>
