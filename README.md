@@ -9,7 +9,7 @@ fun and interactive web app designed to help you discover your next favorite spo
 
 ## Technologies Used  
 - **Backend 🔧**: Flask, SQLAlchemy  
-- **Frontend 🎨**: HTML, CSS, JavaScript  
+- **Frontend 🎨**: HTML, CSS
 - **Database 🗄️**: PostgreSQL  
 
 <br> 
