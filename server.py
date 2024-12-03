@@ -28,46 +28,54 @@ def quiz():
         user_email = request.form.get('email')
         user_answers = request.form
 
-        sport_scores = {sport: 0 for sport in question_mapping.values()}
+        sport_scores = {sport: 0 for sport in set(
+            sport for question in question_mapping.values()
+            for sport_list in question.values() for sport in sport_list
+        )}
 
         for question, answer in user_answers.items():
             if question in question_mapping:
                 if answer.lower() == "yes":
                     for sport in question_mapping[question]["yes"]:
                         sport_scores[sport] += 1
-                elif answer in question_mapping[question]:
-                    for sport in question_mapping[question][answer]:
-                        sport_scores[sport] += 1
+                elif answer.lower() == "no":
+                    for sport in question_mapping[question]["no"]:
+                        sport_scores[sport] -= 1
+                else:
+                    if answer in question_mapping[question]:
+                        for sport in question_mapping[question][answer]:
+                            sport_scores[sport] += 1
 
         sorted_sports = sorted(sport_scores.items(), key=lambda x: x[1], reverse=True)
         top_sports = [sport for sport, score in sorted_sports[:3]]
 
-        return render_template('quiz_results.html', sports=top_sports, name=user_name, email=user_email)
+        sports_data = {}
+        for sport in top_sports:
+            sports_obj = Sport.query.filter_by(sport_name=sport).first()
+            athletes = Athlete.query.filter_by(sport_id=sports_obj.sport_id).all()
+            sports_data[sport] = {
+                'description': sports_obj.description,
+                'athletes': athletes
+            }
+
+        return render_template('quiz_results.html', sports=top_sports, name=user_name, email=user_email, sports_data=sports_data)
 
     return render_template('quiz.html', question_mapping=question_mapping)
 
-@app.route('/quiz-results', methods=['GET'])
+@app.route('/quiz-results', methods=['GET', 'POST'])
 def quiz_results():
     """Display the quiz results."""
-    sports = request.args.getlist('sports').split(',')   
-    name = request.args.get('name')
-    email = request.args.get('email')
+    if request.method == 'POST':
+        sports = request.form.getlist('sports') 
+        name = request.form.get('name')
+        email = request.form.get('email')
+    else:
+        # Handle the GET request
+        sports = request.args.getlist('sports')   
+        name = request.args.get('name')
+        email = request.args.get('email')
+
     return render_template('quiz_results.html', sports=sports, name=name, email=email)
-
-@app.route('/sports-page')
-def sports_page():
-    """Display the sports page."""
-    return render_template('sports_page.html')
-
-@app.route('/athletes-page')
-def athletes_page():
-    """Display the athletes page."""
-    return render_template('athletes_page.html')
-
-@app.route('/calorie-calculator')
-def calorie_calculator():
-    """Display the calorie calculator page."""
-    return render_template('calorie_calculator.html')
 
 if __name__ == "__main__":
     connect_to_db(app) 
